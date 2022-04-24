@@ -1,1 +1,1 @@
-# favBlogs
+# Blogs worth my taste.
