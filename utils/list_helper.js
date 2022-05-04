@@ -1,3 +1,5 @@
+var _ = require('lodash')
+
 const totalLikes = (blogs) => {
     const reducer = (previousVal, currentVal) => {
         return previousVal + currentVal.likes
@@ -12,4 +14,12 @@ const favoriteBlog = (blogs) => {
     return maxLikes
 }
 
-module.exports = { totalLikes, favoriteBlog }
+const mostBlogs = (blogs) => {
+    const obj = _.countBy(blogs, 'author')
+    const highest = Object.keys(obj).reduce((prev, cur) => {
+        return obj[prev] > obj[cur] ? { 'author': prev, 'blogs': obj[prev] } : { 'author': cur, 'blogs': obj[cur] }
+    })
+    return highest
+}
+
+module.exports = { totalLikes, favoriteBlog, mostBlogs }
